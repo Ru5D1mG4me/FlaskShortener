@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}URL Shortener - Home{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">URL Shortener</h1>
+    <form action="" method="POST" novalidate>
+        {{ form.csrf_token }}
+        <div class="mb-3">
+            <label for="original-url" class="form-label">{{ form.original_url.label }}</label>
+            {{ form.original_url(class="form-control", type="url") }}
+        </div>
+        {% for error in form.original_url.errors %}
+        <div class="alert alert-danger" role="alert">
+            <span>{{ error }}</span>
+        </div>
+        {% endfor %}
+        {{ form.submit(class="btn btn-primary mb-3") }}
+    </form>
+</div>
+{% endblock %}
